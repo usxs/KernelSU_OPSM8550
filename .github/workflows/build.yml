@@ -112,6 +112,7 @@ on:
       susfs-nongki:
         description: "SUSFS-NONGKI: select ur kernel version(for nongki)"
         required: true
+        type: choice
         default: None
         options:
           - None
