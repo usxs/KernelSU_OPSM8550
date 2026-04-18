@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       brand:
-        description: Brand: Select your brand
+        description: "Brand: Select your brand"
         required: true
         type: choice
         default: oneplus
@@ -14,19 +14,19 @@ on:
           - sony
 
       soc:
-        description: SOC: Type your soc
+        description: "SOC: Type your soc"
         required: true
         type: string
         default: "sm8550"
 
       has_modules_repo:
-        description: Has-Kernel-Repo: Enable this ur kernel has modules repo
+        description: "Has-Kernel-Repo: Enable this ur kernel has modules repo"
         required: true
         type: boolean
         default: true
 
       clang_version:
-        description: Clang-Version: Select the clang version of ur kernel
+        description: "Clang-Version: Select the clang version of ur kernel"
         required: true
         type: choice
         default: clang-r563880c
@@ -39,7 +39,7 @@ on:
           - clang-r563880c  #lineage-23.2 in android16-qpr3-release
           
       kernel_source:
-        description: Kernel-Source: Kernel repo's org/user on github
+        description: "Kernel-Source: Kernel repo's org/user on github"
         required: true
         type: choice
         options:
@@ -48,13 +48,13 @@ on:
           - OnePlus12R-development
           
       kernel_branch:
-        description: Kernel-Branch: such as lineage-23.2 sixteen-qpr1 etc.
+        description: "Kernel-Branch: such as lineage-23.2 sixteen-qpr1 etc."
         required: true
         type: string
         default: ""
         
       kernel_configs:
-        description: Kernel-Configs: Select ur kernel configs(Use Manual-Type to custom it)
+        description: "Kernel-Configs: Select ur kernel configs(Use Manual-Type to custom it)"
         required: true
         type: choice
         default: oplus-sm8550-los
@@ -69,19 +69,19 @@ on:
 
 
       kernel_configs_manual:
-        description: Kernel-Configs: If u selected Manual-Type in previous options, manually type ur kernel configs here.
+        description: "Kernel-Configs: If u selected Manual-Type in previous options, manually type ur kernel configs here."
         required: false
         type: string
         default: "gki_defconfig vendor/kalama_GKI.config vendor/oplus/kalama_GKI.config vendor/debugfs.config"
 
       enable_tmpfs-xattr:
-        description: TMPFS_XATTR: U can enable this if ur kernel has no CONFIG_TMPFS_XATTR=y
+        description: "TMPFS_XATTR: U can enable this if ur kernel has no CONFIG_TMPFS_XATTR=y"
         required: true
         type: boolean
         default: false
 
       ksu_type:
-        description: KSU: KernelSU Version
+        description: "KSU: KernelSU Version"
         required: true
         type: choice
         options:
@@ -95,7 +95,7 @@ on:
           - ReSukiSU-with-susfs
 
       susfs-gki:
-        description: SUSFS-GKI: select ur kernel version(for gki)
+        description: "SUSFS-GKI: select ur kernel version(for gki)"
         required: true
         type: choice
         default: None
@@ -110,7 +110,7 @@ on:
           - android16-6.12
 
       susfs-nongki:
-        description: SUSFS-NONGKI: select ur kernel version(for nongki)
+        description: "SUSFS-NONGKI: select ur kernel version(for nongki)"
         required: true
         default: None
         options:
