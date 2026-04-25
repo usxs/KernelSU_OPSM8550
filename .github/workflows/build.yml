@@ -19,12 +19,6 @@ on:
         type: string
         default: "sm8550"
 
-      has_modules_repo:
-        description: "Has-Kernel-Repo: Enable this ur kernel has modules repo"
-        required: true
-        type: boolean
-        default: true
-
       clang_version:
         description: "Clang-Version: Select the clang version of ur kernel"
         required: true
@@ -38,12 +32,6 @@ on:
           - clang-r547379   #lineage-23.0 in android16-qpr3-release
           - clang-r563880c  #lineage-23.2 in android16-qpr3-release
           
-      enable_gcc:
-        description: "Enable-GCC: Enable the GCC support"
-        required: true
-        type: boolean
-        default: false
-
       kernel_source:
         description: "Kernel-Source: Kernel repo's org/user on github"
         required: true
@@ -83,18 +71,11 @@ on:
           - oplus-sm8550-los
           - oplus-sm8650-los
 
-
       kernel_configs_manual:
         description: "Kernel-Configs: If u selected Manual-Type in previous options, manually type ur kernel configs here."
         required: false
         type: string
         default: "gki_defconfig vendor/kalama_GKI.config vendor/oplus/kalama_GKI.config vendor/debugfs.config"
-
-      enable_tmpfs-xattr:
-        description: "TMPFS_XATTR: U can enable this if ur kernel has no CONFIG_TMPFS_XATTR=y"
-        required: true
-        type: boolean
-        default: false
 
       ksu_type:
         description: "KSU: KernelSU Version"
@@ -136,6 +117,31 @@ on:
           - 4.14
           - 4.19
           - 5.4
+
+      has_modules_repo:
+        description: "Has-Modules-Repo: Enable this ur kernel has modules repo"
+        required: true
+        type: boolean
+        default: true
+
+      enable_tmpfs-xattr:
+        description: "TMPFS_XATTR: U can enable this if ur kernel has no CONFIG_TMPFS_XATTR=y"
+        required: true
+        type: boolean
+        default: false
+
+      enable_gcc:
+        description: "Enable-GCC: Enable the GCC support"
+        required: true
+        type: boolean
+        default: false
+
+      fuck_werror:
+        description: "Fuck-Werror: FUCK WERROR IN CONFIGS"
+        required: true
+        type: boolean
+        default: false
+
 jobs:
   Kernel_CI:
     env:
@@ -349,6 +355,15 @@ jobs:
 
             sed -i '/CONFIG_TMPFS_XATTR/d' out/.config
             echo "CONFIG_TMPFS_XATTR=y" >> out/.config
+
+          fi
+
+          if [[ "${{ inputs.fuck_werror }}" == "true" ]]; then
+
+            sed -i '/CONFIG_CC_WERROR/d' out/.config
+            sed -i '/CONFIG_WERROR/d' out/.config
+            echo "CONFIG_CC_WERROR=n" >> out/.config
+            echo "CONFIG_WERROR=n" >> out/.config
 
           fi
 
