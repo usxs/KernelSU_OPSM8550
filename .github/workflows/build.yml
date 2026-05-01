@@ -392,7 +392,7 @@ jobs:
 
               if [[ "${{ inputs.enable_my_own_susfs_patch }}" == "true" ]]; then
 
-                if [[ "${{ $inputs.susfs-gki }}" == "android13-5.15" ]]; then
+                if [[ "${{ inputs.susfs-gki }}" == "android13-5.15" ]]; then
 
                   patch -p1 < ${GITHUB_WORKSPACE}/patches/fix_task_mmu_5.15.patch
 
