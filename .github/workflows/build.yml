@@ -171,6 +171,7 @@ on:
         required: true
         type: boolean
         default: false
+
       enable_my_own_susfs_patch:
         description: "fuck susfs: fuck susfs"
         required: true
@@ -389,7 +390,7 @@ jobs:
               cp ./kernel_patches/include/linux/* ../include/linux/
               cd .. || exit 1
 
-              if [[ "${{ $inputs.enable_my_own_susfs_patch }}" == "true" ]]; then
+              if [[ "${{ inputs.enable_my_own_susfs_patch }}" == "true" ]]; then
 
                 if [[ "${{ $inputs.susfs-gki }}" == "android13-5.15" ]]; then
 
